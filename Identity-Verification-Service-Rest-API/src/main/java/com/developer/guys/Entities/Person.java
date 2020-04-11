@@ -12,5 +12,5 @@ public class Person implements IEntity {
     private long TC;
     private String Name;
     private String Surname;
-    private int DateYear;
+    private int BirthYear;
 }
