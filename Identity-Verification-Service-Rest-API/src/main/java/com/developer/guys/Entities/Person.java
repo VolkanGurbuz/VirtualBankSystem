@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Person implements IEntity {
-    private long TC;
+    private String TC;
     private String Name;
     private String Surname;
-    private int BirthYear;
+    private String BirthYear;
 }

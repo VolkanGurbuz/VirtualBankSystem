@@ -1,14 +1,17 @@
 package com.developer.guys.Core.Utilities.Util;
 
+import com.developer.guys.Entities.Person;
+
 import javax.xml.soap.*;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
+import java.io.StringWriter;
 
 public class Util {
 
-    public static void sendMessage(){
+    public static void sendMessage(Person person){
         try
         {
             // Create SOAP Connection
@@ -17,7 +20,7 @@ public class Util {
 
             // Send SOAP Message to SOAP Server
             String url = "https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?op=TCKimlikNoDogrula";
-            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(), url);
+            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(person), url);
 
 
             // Process the SOAP Response
@@ -34,7 +37,7 @@ public class Util {
 
 
 
-    private static SOAPMessage createSOAPRequest() throws Exception
+    private static SOAPMessage createSOAPRequest(Person person) throws Exception
     {
         SOAPMessage message = MessageFactory.newInstance().createMessage();
         SOAPPart soapPart = message.getSOAPPart();
@@ -49,13 +52,13 @@ public class Util {
         SOAPBody soapBody = envelope.getBody();
         SOAPElement soapBodyElem = soapBody.addChildElement("TCKimlikNoDogrula", "", "http://tckimlik.nvi.gov.tr/WS");
         SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("TCKimlikNo");
-        soapBodyElem1.addTextNode("242534546");
+        soapBodyElem1.addTextNode(String.valueOf(person.getTC()));
         SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("Ad");
-        soapBodyElem2.addTextNode("SELAMI");
+        soapBodyElem2.addTextNode(person.getName());
         SOAPElement soapBodyElem3 = soapBodyElem.addChildElement("Soyad");
-        soapBodyElem3.addTextNode("SAHIN");
+        soapBodyElem3.addTextNode(person.getSurname());
         SOAPElement soapBodyElem4 = soapBodyElem.addChildElement("DogumYili");
-        soapBodyElem4.addTextNode("1990");
+        soapBodyElem4.addTextNode(String.valueOf(person.getBirthYear()));
 
         MimeHeaders headers = message.getMimeHeaders();
         headers.addHeader("SOAPAction", "http://tckimlik.nvi.gov.tr/WS/TCKimlikNoDogrula");
@@ -63,9 +66,9 @@ public class Util {
         message.saveChanges();
 
         /* Print the request message */
-        System.out.print("Request SOAP Message = ");
-        message.writeTo(System.out);
-        System.out.println();
+//        System.out.print("Request SOAP Message = ");
+//        message.writeTo(System.out);
+//        System.out.println();
 
         return message;
     }
@@ -81,7 +84,4 @@ public class Util {
         StreamResult result = new StreamResult(System.out);
         transformer.transform(sourceContent, result);
     }
-
-
-
 }
