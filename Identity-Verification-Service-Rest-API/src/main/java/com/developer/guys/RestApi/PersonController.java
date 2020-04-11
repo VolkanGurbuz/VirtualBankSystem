@@ -6,9 +6,7 @@ import com.developer.guys.Entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -22,11 +20,13 @@ public class PersonController {
     }
 
 
-    @GetMapping("/verify")
-    public ResponseEntity<?> get(Person person){
+    @PostMapping("/verify")
+    public ResponseEntity<?> get(@RequestBody Person person){
 
+        //Getting Result From PersonService
         Result result = personService.verifyPerson(person);
 
+        //To Send Result as HTTP Format with Service Message
         if (result.Success) {
             return new ResponseEntity<>(result.Message, HttpStatus.OK);
         }
