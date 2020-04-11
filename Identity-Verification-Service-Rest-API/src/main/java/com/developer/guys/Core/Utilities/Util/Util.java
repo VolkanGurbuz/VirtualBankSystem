@@ -1,13 +1,18 @@
 package com.developer.guys.Core.Utilities.Util;
 
 import com.developer.guys.Entities.Person;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import javax.xml.soap.*;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.Map;
 
 public class Util {
 
@@ -79,9 +84,25 @@ public class Util {
     private static void printSOAPResponse(SOAPMessage soapResponse) throws Exception {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
+        MimeHeaders header = new MimeHeaders();
+        header.addHeader("Content-Type", "text/xml");
+        MessageFactory mf = MessageFactory.newInstance();
         Source sourceContent = soapResponse.getSOAPPart().getContent();
-        System.out.print("\nResponse SOAP Message = ");
         StreamResult result = new StreamResult(System.out);
-        transformer.transform(sourceContent, result);
+        StringWriter stringResult = new StringWriter();
+        TransformerFactory.newInstance().newTransformer().transform(sourceContent, new StreamResult(stringResult));
+        String message = stringResult.toString();
+        InputStream is = new ByteArrayInputStream(message.getBytes());
+        // create the SOAPMessage
+        SOAPMessage soapMessage = mf.createMessage(header,is);
+        // get the body
+        SOAPBody soapBody = soapMessage.getSOAPBody();
+        // find your node based on tag name
+        NodeList nodes = soapBody.getElementsByTagName("TCKimlikNoDogrulaResult");
+        // check if the node exists and get the value
+        String someMsgContent = null;
+        Node node = nodes.item(0);
+        someMsgContent = node != null ? node.getTextContent() : "";
+        System.out.println(someMsgContent);
     }
 }
