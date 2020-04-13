@@ -54,13 +54,13 @@ public class Util {
     SOAPElement soapBodyElem =
         soapBody.addChildElement("TCKimlikNoDogrula", "", "http://tckimlik.nvi.gov.tr/WS");
     SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("TCKimlikNo");
-    soapBodyElem1.addTextNode(String.valueOf(person.getTC()));
+    soapBodyElem1.addTextNode(person.getTC());
     SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("Ad");
-    soapBodyElem2.addTextNode(person.getName());
+    soapBodyElem2.addTextNode(person.getName().toUpperCase());
     SOAPElement soapBodyElem3 = soapBodyElem.addChildElement("Soyad");
-    soapBodyElem3.addTextNode(person.getSurname());
+    soapBodyElem3.addTextNode(person.getSurname().toUpperCase());
     SOAPElement soapBodyElem4 = soapBodyElem.addChildElement("DogumYili");
-    soapBodyElem4.addTextNode(String.valueOf(person.getBirthYear()));
+    soapBodyElem4.addTextNode(person.getBirthYear());
 
     MimeHeaders headers = message.getMimeHeaders();
     headers.addHeader("SOAPAction", "http://tckimlik.nvi.gov.tr/WS/TCKimlikNoDogrula");
