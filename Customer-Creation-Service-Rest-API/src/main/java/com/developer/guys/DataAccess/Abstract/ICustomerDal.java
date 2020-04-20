@@ -1,6 +1,6 @@
-package com.developer.guys.DataAccess;
+package com.developer.guys.DataAccess.Abstract;
 
-import com.developer.guys.Entity.Customer;
+import com.developer.guys.Entity.Concrete.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ICustomerDal extends MongoRepository<Customer, String> {

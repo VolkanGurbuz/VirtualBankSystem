@@ -1,4 +1,4 @@
-package com.developer.guys.Entity;
+package com.developer.guys.Entity.Concrete;
 
 import lombok.Getter;
 import lombok.Setter;
