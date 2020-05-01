@@ -19,17 +19,22 @@ public class CustomerManager implements ICustomerService {
 
     @Override
     public DataResult<List<Customer>> GetAll() {
-        return new SuccessDataResult<List<Customer>>(_customerDal.findAll(), true);
+        List<Customer> customerList = _customerDal.findAll();
+        if (customerList != null){
+            return new SuccessDataResult<List<Customer>>(customerList, Messages.CustomerFound);
+        }
+        else
+            return new ErrorDataResult<List<Customer>>(null, Messages.CustomerNotFound);
     }
 
     @Override
     public DataResult<Optional<Customer>> GetById(String id) {
         Optional<Customer> tempResult = _customerDal.findById(id);
         if (tempResult != null){
-            return new SuccessDataResult<Optional<Customer>>(tempResult, true);
+            return new SuccessDataResult<Optional<Customer>>(tempResult, Messages.CustomerFound);
         }
         else
-            return new ErrorDataResult<Optional<Customer>>(null, false, Messages.CustomerNotFound);
+            return new ErrorDataResult<Optional<Customer>>(null, Messages.CustomerNotFound);
     }
 
     @Override

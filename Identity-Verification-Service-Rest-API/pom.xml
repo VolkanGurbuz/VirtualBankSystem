@@ -53,13 +53,13 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.26.0</version>
+                <version>0.33.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <verbose>true</verbose>
                     <images>
                         <image>
-                            <name>${project.artifactId}</name>
+                            <name>vbs-id-ver-ser:v1-alpha</name>
                             <build>
                                 <from>java:8-jdk-alpine</from>
                                 <entryPoint>
