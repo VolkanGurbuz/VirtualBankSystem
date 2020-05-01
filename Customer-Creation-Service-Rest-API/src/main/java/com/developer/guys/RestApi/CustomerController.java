@@ -30,8 +30,8 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/customers/find{id}")
-    public ResponseEntity<?> GetById(String id){
+    @GetMapping("/customers/{id}")
+    public ResponseEntity<?> GetById(@PathVariable String id){
         DataResult<Optional<Customer>> result = _customerService.GetById(id);
 
         if (result.Success) {
