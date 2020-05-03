@@ -23,8 +23,9 @@ public class CustomerManager implements ICustomerService {
         if (customerList != null){
             return new SuccessDataResult<List<Customer>>(customerList, Messages.CustomerFound);
         }
-        else
+        else {
             return new ErrorDataResult<List<Customer>>(null, Messages.CustomerNotFound);
+        }
     }
 
     @Override
