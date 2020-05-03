@@ -24,7 +24,6 @@ public class PersonManager implements IPersonService{
             }
             else
                 return new ErrorResult(StaticMessages.NonSuccessVerification);
-
         }
         catch (Exception e){
             return new ErrorResult(StaticMessages.ErrorVerification + " - Error Details: " + e.getMessage());

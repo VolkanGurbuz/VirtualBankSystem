@@ -20,7 +20,11 @@ public class Customer implements IEntity {
     private String Surname;
     private String Email;
     private String Password;
+
+    @Nullable
     private List<CreditCard> creditCards;
+
+    @Nullable
     private List<BankAccount> bankAccounts;
 }
 
