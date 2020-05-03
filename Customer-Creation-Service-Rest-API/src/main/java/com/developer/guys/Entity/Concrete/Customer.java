@@ -1,5 +1,6 @@
 package com.developer.guys.Entity.Concrete;
 
+import com.developer.guys.Core.Entities.IEntity;
 import com.mongodb.lang.Nullable;
 import lombok.*;
 import org.bson.codecs.pojo.annotations.BsonId;
@@ -11,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "Customer")
-public class Customer {
+public class Customer implements IEntity {
 
     @BsonId
     private String Id;
@@ -21,5 +22,21 @@ public class Customer {
     private String Password;
     private List<CreditCard> creditCards;
     private List<BankAccount> bankAccounts;
+}
+
+class BankAccount{
+    private String AccountNumber;
+    private String BranchCode;
+    private String BranchName;
+    private String IBANNumber;
+    private String AccountCurrency;
+    private String TypeOfAccount;
+}
+
+class CreditCard{
+    private String CardNumber;
+    private String ExpirationDate;
+    private String CVC;
+    private String CreditCardType;
 }
 
