@@ -6,32 +6,35 @@ import com.developer.guys.Entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/api")
+@Controller
 public class PersonController {
 
-    private IPersonService personService;
+  private IPersonService personService;
 
-    @Autowired
-    public PersonController(IPersonService personService) {
-        this.personService = personService;
-    }
+  @Autowired
+  public PersonController(IPersonService personService) {
+    this.personService = personService;
+  }
 
+  @GetMapping("/verify")
+  public String verifyPerson(@ModelAttribute Person person, Model model) {
+    model.addAttribute("person", person);
+    return "verify";
+  }
 
-    @PostMapping("/verify")
-    public ResponseEntity<?> get(@RequestBody Person person){
+  @PostMapping("/verify")
+  public String greetingSubmit(@ModelAttribute Person person, Model model) {
 
-        //Getting Result From PersonService
-        Result result = personService.verifyPerson(person);
+    // Getting Result From PersonService
+    Result result = personService.verifyPerson(person);
+    String resultMessage = result.getMessage();
 
-        //To Send Result as HTTP Format with Service Message
-        if (result.Success) {
-            return new ResponseEntity<>(result.Message, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(result.Message, HttpStatus.BAD_REQUEST);
-    }
+    model.addAttribute("resultmessage", resultMessage);
 
-
+    return "result";
+  }
 }
