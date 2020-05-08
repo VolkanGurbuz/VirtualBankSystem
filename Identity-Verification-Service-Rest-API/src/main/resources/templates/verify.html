@@ -3,17 +3,46 @@
 <head>
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+
 </head>
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/verify}" th:object="${person}" method="post">
+<div class="container-fluid" style="margin-top: 20px">
 
-    <p>TC: <input type="text" th:field="*{TC}"/></p>
-    <p>Isim: <input type="text" th:field="*{name}"/></p>
-    <p>Soyisim: <input type="text" th:field="*{surname}"/></p>
-    <p>Dogum: <input type="text" th:field="*{birthYear}"/></p>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary">
 
-    <p><input type="submit" value="Submit"/></p>
-</form>
+            <div class="panel-heading">
+                <h1 class="panel-title">Enter Verify Fields</h1>
+            </div>
+
+            <div class="panel-body">
+                <form action="#" th:action="@{/verify}" th:object="${person}" method="post">
+
+                    <p>TC: <input type="text" th:field="*{TC}"/></p>
+                    <p>Isim: <input type="text" th:field="*{name}"/></p>
+                    <p>Soyisim: <input type="text" th:field="*{surname}"/></p>
+                    <p>Dogum: <input type="text" th:field="*{birthYear}"/></p>
+
+                    <p><input type="submit" value="Submit"/></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
+
 </html>
