@@ -1,8 +1,9 @@
 import com.developer.guys.Core.Utilities.Util.Util
 import com.developer.guys.Entities.Person
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
-
+@SpringBootTest
 class VerificationTest extends Specification {
 
 
@@ -34,8 +35,6 @@ class VerificationTest extends Specification {
         then:
         isValid == false
 
-
     }
-
 
 }
