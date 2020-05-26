@@ -1,9 +1,10 @@
 import com.developer.guys.Core.Utilities.Util.Util
 import com.developer.guys.Entities.Person
+import com.developer.guys.VerificationApplication
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
-@SpringBootTest
+@SpringBootTest(classes = VerificationApplication.class)
 class VerificationTest extends Specification {
 
 
