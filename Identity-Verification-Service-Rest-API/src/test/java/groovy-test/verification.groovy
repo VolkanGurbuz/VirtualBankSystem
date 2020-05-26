@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class VerificationTest extends Specification {
 
-
+    
     def "person id verification success test"() {
         given: "util and person classes initialize"
         def personVerifyUtil = new Util()
