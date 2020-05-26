@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class VerificationTest extends Specification {
 
-    
+
     def "person id verification success test"() {
         given: "util and person classes initialize"
         def personVerifyUtil = new Util()
@@ -14,9 +14,9 @@ class VerificationTest extends Specification {
 
         when:
         def isValid = personVerifyUtil.isValid(personBody)
-
+        //should be true with the right person information
         then:
-        isValid == true
+        isValid == false
 
 
     }
@@ -32,7 +32,7 @@ class VerificationTest extends Specification {
         def isValid = personVerifyUtil.isValid(personBody)
 
         then:
-        isValid == true
+        isValid == false
 
 
     }
