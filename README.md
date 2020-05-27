@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/VolkanGurbuz/VirtualBankSystem.svg?style=svg)](https://circleci.com/gh/VolkanGurbuz/VirtualBankSystem)
+
 # VirtualBankSystem
 
 # Spring Framework 5: 
