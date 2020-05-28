@@ -28,7 +28,6 @@ public class PersonController {
 
   @PostMapping("/verify")
   public String greetingSubmit(@ModelAttribute Person person, Model model) {
-
     // Getting Result From PersonService
     Result result = personService.verifyPerson(person);
     String resultMessage = result.getMessage();

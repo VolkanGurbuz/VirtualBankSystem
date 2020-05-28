@@ -14,33 +14,30 @@ import java.util.List;
 @Document(collection = "Customer")
 public class Customer implements IEntity {
 
-    @BsonId
-    private String Id;
-    private String Name;
-    private String Surname;
-    private String Email;
-    private String Password;
+  @BsonId private String id;
+  private String name;
+  private String surName;
+  private String email;
+  private String password;
+  private String address;
 
-    @Nullable
-    private List<CreditCard> creditCards;
+  @Nullable private List<CreditCard> creditCards;
 
-    @Nullable
-    private List<BankAccount> bankAccounts;
+  @Nullable private List<BankAccount> bankAccounts;
 }
 
-class BankAccount{
-    private String AccountNumber;
-    private String BranchCode;
-    private String BranchName;
-    private String IBANNumber;
-    private String AccountCurrency;
-    private String TypeOfAccount;
+class BankAccount {
+  private String accountNumber;
+  private String branchCode;
+  private String branchName;
+  private String IBANNumber;
+  private String accountCurrency;
+  private String typeOfAccount;
 }
 
-class CreditCard{
-    private String CardNumber;
-    private String ExpirationDate;
-    private String CVC;
-    private String CreditCardType;
+class CreditCard {
+  private String CardNumber;
+  private String ExpirationDate;
+  private String CVC;
+  private String CreditCardType;
 }
-
