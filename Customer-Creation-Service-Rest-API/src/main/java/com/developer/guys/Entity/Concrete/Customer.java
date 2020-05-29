@@ -15,6 +15,8 @@ import java.util.List;
 public class Customer implements IEntity {
 
   @BsonId private String id;
+  private String tcno;
+  private String birthdate;
   private String name;
   private String surName;
   private String email;
