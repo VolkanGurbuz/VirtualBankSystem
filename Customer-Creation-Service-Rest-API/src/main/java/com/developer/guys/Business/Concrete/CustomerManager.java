@@ -2,6 +2,7 @@ package com.developer.guys.Business.Concrete;
 
 import com.developer.guys.Business.Abstract.ICustomerService;
 import com.developer.guys.Business.Constants.Messages;
+import com.developer.guys.Core.Utilities.PasswordTools.PasswordUtils;
 import com.developer.guys.Core.Utilities.Result.*;
 import com.developer.guys.DataAccess.Abstract.ICustomerDal;
 import com.developer.guys.Entity.Concrete.Customer;
@@ -40,7 +41,10 @@ public class CustomerManager implements ICustomerService {
 
     @Override
     public Result Add(Customer customer) {
+        String salt = PasswordUtils.getSalt(30);
+        customer.setPassword(PasswordUtils.generateSecurePassword(customer.getPassword(), salt));
         _customerDal.save(customer);
+        System.out.println("Salt: " + salt);
         return new SuccessResult(Messages.CustomerAdded);
     }
 
