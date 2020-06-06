@@ -6,6 +6,7 @@
     <modules>
         <module>Identity-Verification-Service-Rest-API</module>
         <module>Customer-Creation-Service-Rest-API</module>
+        <module>Customer-Bank-Account-Creation-Service-Rest-API</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
