@@ -2,8 +2,10 @@ package com.developer.guys.DataAccess.Abstract;
 
 import com.developer.guys.Entity.Concrete.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.Query;
 
-@Repository
 public interface ICustomerDal extends MongoRepository<Customer, String> {
+
+    @Query("{'tcno':?0}")
+    Customer findByTcno(String tc);
 }
