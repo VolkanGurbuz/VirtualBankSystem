@@ -2,13 +2,10 @@ package com.developer.guys.Entity.Concrete;
 
 import com.developer.guys.Core.Entities.IEntity;
 import com.mongodb.lang.Nullable;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.List;
 
 @Getter
@@ -27,23 +24,9 @@ public class Customer implements IEntity {
   private String password;
   private String address;
 
+  @DBRef
   @Nullable private List<CreditCard> creditCards;
 
+  @DBRef
   @Nullable private List<BankAccount> bankAccounts;
-}
-
-class BankAccount {
-  private String accountNumber;
-  private String branchCode;
-  private String branchName;
-  private String IBANNumber;
-  private String accountCurrency;
-  private String typeOfAccount;
-}
-
-class CreditCard {
-  private String CardNumber;
-  private String ExpirationDate;
-  private String CVC;
-  private String CreditCardType;
 }
