@@ -42,7 +42,7 @@ public class CustomerController {
   }
 
   @PostMapping("/customers/add")
-  public ResponseEntity<?> Add(@RequestBody Customer customer, ResponseEntity responseEntity) {
+  public ResponseEntity<?> Add(@RequestBody Customer customer) {
     Result result = _customerService.Add(customer);
 
     if (result.Success) {
@@ -54,8 +54,9 @@ public class CustomerController {
   @PostMapping("/customers/register")
   public String greetingSubmit(@ModelAttribute Customer customer, Model model) {
     Result result = _customerService.Add(customer);
-    String resultMessage = result.getMessage();
 
+    String resultMessage = result.getMessage();
+    System.out.println("reslt" + resultMessage);
     model.addAttribute("resultmessage", resultMessage);
 
     return "bank/welcome";

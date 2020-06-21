@@ -11,12 +11,14 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @EnableMongoRepositories
 public class Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-        CustomerManager manager = new CustomerManager();
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+    CustomerManager manager = new CustomerManager();
 
-        Result result = manager.Update(new UserLoginDto("21892064260", "sezer123", "TRY"));
+    // Result result = manager.Update(new UserLoginDto("21892064260", "sezer123", "TRY"));
 
-        System.out.println(result.Message);
-    }
+    // System.out.println(result.Message);
+
+    System.out.println(manager.GetByTcNo("1845334").Message);
+  }
 }

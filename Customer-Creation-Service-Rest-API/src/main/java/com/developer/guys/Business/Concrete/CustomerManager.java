@@ -15,42 +15,38 @@ import java.util.Optional;
 @Service
 public class CustomerManager implements ICustomerService {
 
-    @Autowired
-    private ICustomerDal _customerDal;
+  @Autowired private ICustomerDal _customerDal;
 
-    @Override
-    public DataResult<List<Customer>> GetAll() {
-        List<Customer> customerList = _customerDal.findAll();
-        if (customerList != null){
-            return new SuccessDataResult<List<Customer>>(customerList, Messages.CustomerFound);
-        }
-        else {
-            return new ErrorDataResult<List<Customer>>(null, Messages.CustomerNotFound);
-        }
+  @Override
+  public DataResult<List<Customer>> GetAll() {
+    List<Customer> customerList = _customerDal.findAll();
+    if (customerList != null) {
+      return new SuccessDataResult<List<Customer>>(customerList, Messages.CustomerFound);
+    } else {
+      return new ErrorDataResult<List<Customer>>(null, Messages.CustomerNotFound);
     }
+  }
 
-    @Override
-    public DataResult<Optional<Customer>> GetById(String id) {
-        Optional<Customer> tempResult = _customerDal.findById(id);
-        if (tempResult != null){
-            return new SuccessDataResult<Optional<Customer>>(tempResult, Messages.CustomerFound);
-        }
-        else
-            return new ErrorDataResult<Optional<Customer>>(null, Messages.CustomerNotFound);
-    }
+  @Override
+  public DataResult<Optional<Customer>> GetById(String id) {
+    Optional<Customer> tempResult = _customerDal.findById(id);
+    if (tempResult != null) {
+      return new SuccessDataResult<Optional<Customer>>(tempResult, Messages.CustomerFound);
+    } else return new ErrorDataResult<Optional<Customer>>(null, Messages.CustomerNotFound);
+  }
 
-    @Override
-    public Result Add(Customer customer) {
-        String salt = PasswordUtils.getSalt(30);
-        customer.setPassword(PasswordUtils.generateSecurePassword(customer.getPassword(), salt));
-        _customerDal.save(customer);
-        System.out.println("Salt: " + salt);
-        return new SuccessResult(Messages.CustomerAdded);
-    }
+  @Override
+  public Result Add(Customer customer) {
+    String salt = PasswordUtils.getSalt(30);
+    customer.setPassword(PasswordUtils.generateSecurePassword(customer.getPassword(), salt));
+    System.out.println("Salt: " + _customerDal);
+    _customerDal.save(customer);
+    return new SuccessResult(Messages.CustomerAdded);
+  }
 
-    @Override
-    public Result Delete(Customer customer) {
-        _customerDal.delete(customer);
-        return new SuccessResult(Messages.CustomerDeleted);
-    }
+  @Override
+  public Result Delete(Customer customer) {
+    _customerDal.delete(customer);
+    return new SuccessResult(Messages.CustomerDeleted);
+  }
 }
