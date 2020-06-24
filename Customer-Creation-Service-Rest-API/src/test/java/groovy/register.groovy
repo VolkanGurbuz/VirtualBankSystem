@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.ui.Model
 import spock.lang.Specification
@@ -51,19 +52,13 @@ class VerificationTest extends Specification {
         customer.setSurName("gurbuz")
         customer.setPassword("deneme")
 
-        println("Status ")
-
         when:
         when(customerController.Add(customer, model)).thenReturn(model)
 
         then:
 
-
-        mockMvc.perform(
-                post("/api/customers/register")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-        )
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/api/customers/register"))
                 .andExpect(status().isCreated())
 
 
