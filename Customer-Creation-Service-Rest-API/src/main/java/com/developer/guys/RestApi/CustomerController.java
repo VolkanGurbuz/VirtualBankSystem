@@ -63,6 +63,7 @@ public class CustomerController {
   }
 
   @GetMapping("/customers/register")
+  @ResponseStatus(HttpStatus.CREATED)
   public String Add(@ModelAttribute Customer customer, Model model) {
     // Result result = _customerService.Add(customer);
     model.addAttribute("customer", customer);
